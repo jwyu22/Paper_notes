@@ -1,0 +1,17 @@
+---
+title: "Paper Notes"
+author: "Jonathan Yu"
+date: "September 19, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Watson & Crick, 1953
+
+- Watson, J. D., and F. H. Crick. "Molecular Structure of Nucleic Acids; a Structure for Deoxyribose Nucleic Acid." Nature 171, no. 4356 (April 25, 1953):737-38
+
+After discovering some inconsistensies with current proposed structures of nucleic acid, Watson and Crick proposed a two helical chain structure where each are coiled around the same axis. Using the same chemical assumption of the 3', 5' linkages, the chains run in opposite directions and have bases on the insdie and the phosphates on the outside. In other words, the proposed DNA strucutre is a double-stranded helical model with two sugar-phosphate as backbones on the outside and hydrogen bonds between pairs of nitrogenous bases on the inside. The new feature includes having the two chains held by purine and pyrimidine bases - joined together in pairs by hydrogen-bond. Specifically, regarding bases, specific pairs bond together: adenine (purine) with thymine (pyrimidine), and guanine (purine) with cytosine (pyrimidine). They thank Dr Jerry Donohue and Dr. M. H. F. Wilkins \& Dr. R. E. Franklin for their criticisms and expirments for inspirations. 
+

@@ -1,5 +1,5 @@
 ---
-title: "Paper Notes"
+title: "High-throughput Genomic Paper Notes"
 author: "Jonathan Yu"
 date: "September 19, 2017"
 output: pdf_document

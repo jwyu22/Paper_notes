@@ -1,13 +1,19 @@
 ---
 title: "High-throughput Genomic Paper Notes"
 author: "Jonathan Yu"
-date: "October 2, 2017"
+date: "October 16, 2017"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+### Altman and Martin, 2015 
+
+- Altman, N. and Krzywinski, M., 2015. Points of Significance: Association, correlation and causation. Nature Methods, 12(10)
+
+Variability affects our internal validity (replication of experiments) and external validity (generalization of experiments to population). A well-designed experiment compromises between internal and external validity - if try to focus too much on one aspect, we lose the ability to have the other. In particular, two prinicples - precision to characterize a sample and variance from different sources together - can be combined into a nested design. Nuisance variation that occur from experimental design should be minimizaed to optimize power whereas those that occur from population should be sampled and quantified to make conclusions and determine uncertainty in the estimates of the conclusions. 
 
 ### Tumor Analysis Best Practices Working Group, 2004
 

@@ -1,7 +1,7 @@
 ---
 title: "High-throughput Genomic Paper Notes"
 author: "Jonathan Yu"
-date: "October 25, 2017"
+date: "November 19, 2017"
 output: pdf_document
 ---
 
@@ -9,15 +9,30 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+### Smyth, 2004
+
+- Smyth, Gordon K. "Linear Models and Empirical Bayes Methods for Assessing Differential Expression in Microarray Experiments." Statistical Applications in Genetics and Molecular Biology 3 (2004)
+
+
+Smyth proposed an extended hierarchical model for microarray experiments. Given the large number of gene-wise linear model fits, a moderated t, using the classical t-statistic as a basis, uses a posterior variance instead of the sample variance to detect differences in gene expressions. The innovation is that prior information is assumed for the variance among the genes and thus, the posterior can be derived to shrink the observed variances. The hypothesis would be that model coefficient that distinguishes differences between group sis zero. It was noted that when gene identifcation using either the current B-statistic model or the moderated t-statistic, they would lead to similar results albeit the t-statistic method would require less knowledge of the parameters. Simulation shows that a moderated t has a lower false discovery rate than other methods and that it can be used for single and two color microarray experiments. 
+
+### Tusher, Tibshirani, and Chu, 2001
+
+- Tusher, V. G., R. Tibshirani, and G. Chu. "Significance Analysis of Microarrays Applied to the Ionizing Radiation Response." Proceedings of the National Academy of Sciences of the United States of America 98, no. 9 (April 24, 2001)
+
+the method Significance Analysis of Microarrays (SAM) was developed to identify significant changes in the expression of thousand of genes during the many different biological states. A score is assigned to each gene for each change relative to the standard deviation for repeated measurements. The genes with scores above a specified threshold, permutations of the repeated measurements are used to estimate the false discovery rate (FDR). 
+
+First, the score comes from the signal-to-noise ratio where they ccounted for gene-specific fluctionations in the gene expressions d(i) $d(i) = \frac{\bar{x}_I(i) - \bar{x}_U(i)}{s(i) + s_0}$ where the numerator is the difference between the average levels of gene i between two states I and U. The gene variation of the repeated measurement account is used in the denominator. Next, the differences are ranked from highest different to lowest relative differnece. Then, permutations of the repeated measurements were done in order to minimize potential confounding effects from differences between two cell lines. A statistic is calculated for each permutation which will result in a distribution of the relative differences where the mean reltaive difference can be derived. This can then compare and identify induced and repressed genes. Their method "for setting thresholds provides asymmetric cutoffs for induced and repressed genes.". The alternative method, t test, has a symmetric horizontal cutoff. SAM has neither strong or weak family wise error rate. 
+
 ### Bolstad et al., 2003
 
-- Bolstad, B. M., R. A. Irizarry, M. Astrand, and T. P. Speed. “A Comparison of Normalization Methods for High Density Oligonucleotide Array Data Based on Variance and Bias.” Bioinformatics (Oxford, England) 19, no. 2 (January 22, 2003): 185–93. - Normalization methods description.
+- Bolstad, B. M., R. A. Irizarry, M. Astrand, and T. P. Speed. "A Comparison of Normalization Methods for High Density Oligonucleotide Array Data Based on Variance and Bias." Bioinformatics (Oxford, England) 19, no. 2 (January 22, 2003): 185-93. - Normalization methods description.
 
 Three complete data methods: cyclic loes, contrasted based method, and quantile normalization are different norminalization techniques to reduce obscuring variation between oligonucleotide arrays. Current methods - scaling and non-linear method - utilized by Affymetrix do not reduce the variation as much as the other methods and performed poorly for spike-in regressions. Affymetrix methods do not deal with cases that are non-linear relationships between arrays. The cyclic loess and contrast based method are derived from the M vs A method and could be time consuming. All these methods depend on choice of baselines but the complete data methods performed matter on the matter of variance reduction and bias. 
 
 ### Cleveland & Devlin, 1988
 
-- Cleveland, William S, and Susan J Devlin. “Locally Weighted Regression: An Approach to Regression Analysis by Local Fitting.” Journal of the American Statistical Association 83, no. 403 (1988): 596–610. - Loess regression. Concept, statistics.
+- Cleveland, William S, and Susan J Devlin. "Locally Weighted Regression: An Approach to Regression Analysis by Local Fitting." Journal of the American Statistical Association 83, no. 403 (1988): 596-610. - Loess regression. Concept, statistics.
 
 Locally weighted regression (loess) is introduced as a local fitting regression, similar to the least squares, that can be used for data exploration, diagnostic checking  of parametric models and nonparametric regression surface. The dependent variable is smoothed as a function of the independent variable in a moving fashion. They show that this can be used to graph smooth surfaces to help choose a parametric model if needed during the exploratory phase. They then show that the adequacy of the parametric model chosen. Finally, it can be shown that the estimate can be used instead of parametric estimates. The multivariate smoother is an extension of the univariate loess smoother where they use the euclidian distance on each scaled independent variables. Loess is comprised of the weights and the neighborhood size. The M plot can help choose the fraction of points in the neighborhood. Assumption include that the loess estimate be a linear combinaton of the outcome observations, that the outcome is a normal distribution, and the loess estimate is not biased. 
 

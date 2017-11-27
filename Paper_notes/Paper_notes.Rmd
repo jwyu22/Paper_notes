@@ -1,13 +1,25 @@
 ---
 title: "High-throughput Genomic Paper Notes"
 author: "Jonathan Yu"
-date: "November 19, 2017"
+date: "November 27, 2017"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+### Benjamini and Hochberg, 1995
+
+- Benjamini, Yoav, and Hochberg, Yosef. "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing." Journal of the Royal Statistical Society. Series B (Methodological), 1995, 289-300. -FDR paper
+
+The authors present a different approach to problems of multiple significant testing by controlling the false discovery rate - expected proporotion of falsely rejected hypotheses. If you were control this, the power could be increased. As usual way to control for multiple testing problems, familywise error rate (FWER) are controleld by multiple comparison procedures (MCPs). The authors suggest a new point of view to multiplicity and thus, a posisble solution. They argue that the number of erronenous rejetions should be taken into account instead of errors that were made so by this logic, the false discovery rate (FDR) should be controlled. This will enable more power into the study at a cost of weaker control of FWER. They present some situations where FDR control is more important and than a simple Bonferroni-type FDR procedure. Through simulation, they show that the power of methods decreases when the number of hypotheses tested increases which proves the multiplicity problem and the power of FDR controlled is uniformly larger than other methods. This is increased with the number of non-null hypotheses and the number of features tested. In classical sense, control of FWER is better however, their argument is that by controlling the FDR, there is also weak control of the FWER. 
+
+### storey and Tibshirani, 2003
+
+-  Storey, John D., and Tibshirani, Robert. "Statistical Significance for Genomewide Studies." Proceedings of the National Academy of Sciences of the United States of America 100, no. 16 (August 5, 2003): 9440-45. -q-value paper
+
+Within genomics, familywise error rate and in this case, false positive discoveries, are common issues. With multiple testing of thousands of features, the goal is to identify as many significant features while controlling for false positives. They propose that the *q value*, an extension of the false discovery rate (FDR), is better than its originator. FDR is the rate of significant features that are truly null whereas the false positive rate is the proportion of the truly null features that were deemed significant. In the normal case, the simple p-value threhsold is too liberal of a false positive rate for the number of tests in 5 examples presented by the author. The usual correction is the familwise error rate which can be too conservative as well. A balance of these two would be the FDR which is the expected values of the proportion of false positives among the significant ones. This, as stated by the authors, is a good start to measure the overall accuracy of a set of significant features but it does not suffice to explain for the individual features - which brings them to the q vlaue measurement. The q-value is the expected proportion of false positives incurred when calling the specific feature significant or a more mathematical way, the minimum FDR that can be attained when calling the feature significant, $\min\limits_{t\geq p_i} FDR$. To further expound on the appropriateness of the FDR and the q-value, two reasons were given: (1) When the null vaue is true, the FDR is equivalent to the FWER and (2) when the number of truly null features is less than the number of features, the FDR is smaller or equal to the FWER. 
 
 ### Smyth, 2004
 
@@ -20,7 +32,7 @@ Smyth proposed an extended hierarchical model for microarray experiments. Given 
 
 - Tusher, V. G., R. Tibshirani, and G. Chu. "Significance Analysis of Microarrays Applied to the Ionizing Radiation Response." Proceedings of the National Academy of Sciences of the United States of America 98, no. 9 (April 24, 2001)
 
-the method Significance Analysis of Microarrays (SAM) was developed to identify significant changes in the expression of thousand of genes during the many different biological states. A score is assigned to each gene for each change relative to the standard deviation for repeated measurements. The genes with scores above a specified threshold, permutations of the repeated measurements are used to estimate the false discovery rate (FDR). 
+The method Significance Analysis of Microarrays (SAM) was developed to identify significant changes in the expression of thousand of genes during the many different biological states. A score is assigned to each gene for each change relative to the standard deviation for repeated measurements. The genes with scores above a specified threshold, permutations of the repeated measurements are used to estimate the false discovery rate (FDR). 
 
 First, the score comes from the signal-to-noise ratio where they ccounted for gene-specific fluctionations in the gene expressions d(i) $d(i) = \frac{\bar{x}_I(i) - \bar{x}_U(i)}{s(i) + s_0}$ where the numerator is the difference between the average levels of gene i between two states I and U. The gene variation of the repeated measurement account is used in the denominator. Next, the differences are ranked from highest different to lowest relative differnece. Then, permutations of the repeated measurements were done in order to minimize potential confounding effects from differences between two cell lines. A statistic is calculated for each permutation which will result in a distribution of the relative differences where the mean reltaive difference can be derived. This can then compare and identify induced and repressed genes. Their method "for setting thresholds provides asymmetric cutoffs for induced and repressed genes.". The alternative method, t test, has a symmetric horizontal cutoff. SAM has neither strong or weak family wise error rate. 
 

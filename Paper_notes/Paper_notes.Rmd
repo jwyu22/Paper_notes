@@ -1,13 +1,32 @@
 ---
 title: "High-throughput Genomic Paper Notes"
 author: "Jonathan Yu"
-date: "November 27, 2017"
+date: "December 4, 2017"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+### Efron and Tibhshirani, 2007
+
+- Efron, B. and Tibshirani, R., 2007. "On testing the significance of sets of genes." The annals of applied statistics (2007): 107-129
+
+The authors propose two improvements to the Gene Set Enrichment Analysis (GSEA): (1) the maxmean statistic for summarizing gene-sets and (2) the restandardization for more accurate inferences. At the most basic level, the common approaches apply a two-sample t-statistic for each gene. Those genes with t-statistic above a cutoff (absolute value) are significant. GSEA suggests assessing the signficance for pre-defined sets instead of the individual genes to test whether gene-set is enriched. They would compute t-statistic for all genes in the data  and then a score for each gene-set and then do permutations where you recalculate the score for each permuted dataset. A false discovery rate is computed. The maxmean proposed is comparitively higher power. The restandardization is then computed by scaling the maxmean statistic by the mean and standard deviation. 
+
+The choice of an efficient gene-set enrichment test statistic such as the maxmean is argued to give better power that is good for the location *shift* and *scale* of the z-values. The maxmean is defined as $S_{max} = max\{\bar{s}_{S}^{(+)}, \bar{s}_{S}^{(-)}\}$. This can detect unusually large z-values in both directions and robustlly does not let a few positive/negative gene scores dominate. 
+
+The restandardization can help improve inferences when score are selected randomly, theoretial null is distributed the same as that of the standardized scores and when the standardized scores are uncorrelated. 
+
+
+### Hung et al., 2012
+
+- Jui-Hung Hung, Tun-Hsiang Yang, Zhenjun Hu, Zhiping Weng, Charles DeLisi. "Gene set enrichment analysis: performance evaluation and usage guidelines." Briefings in Bioinformatics, Volume 13, Issue 3, 2012, 281-291
+
+The authors review a few methods to determine whether sets of genes are connected, i.e. those in the same gene pathway are overrepresented in differential expression, and suggest way to determine the best method when there is no comparison gold standard. The GSEA has been critically assessed by a few authors on the different variants and its choices of gene-set statistics. Compared to the others such as the median or Wilcoxon rank sum test, GSEA was proven to be least sensitive. However, in those papers, they have a gold standard, i.e. which gene sets were true positive and which gene sets were true negatives. In the case where there are no gold standard to see which method is appropriate, they introduce a concept called *mutual converage (MC)* which refelcts the extent to which the gene sets predicted by a particular method are reproduced by other methods. The results show that the GSEA most effect statstic MC while the mean and median tests had poor MC.
+
+When performing GSEA, null hypothesis is defined by two situations: (Q1) the background distribution is obtained by shuffling genes and (Q2) the other is by shuffling the phenotypes/samples. Given uncorrelated properties for gene set-level  and that a predictor has high fraction of mutually supported gene set, the MC of the predictor to be the ratio of the number of votes from the other predictors agreeing with its predictions divided by the maximum number of votes. It is the summation of the product of the prediction profiles of predictor k with the predicton profiles of the other predictors over the maximum number of votes from the predictors. This new metric has been shown to cover the location shift AND the shape changes of the obsreved differential expression distribution compared to the background distribution. 
 
 ### Benjamini and Hochberg, 1995
 
